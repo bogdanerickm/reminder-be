@@ -16,7 +16,13 @@ const services = require('./services');
 const appHooks = require('./app.hooks');
 const channels = require('./channels');
 
+const mongoose = require('./mongoose');
+const emailCron = require('./crons');
+
 const app = express(feathers());
+
+
+emailCron.start();
 
 // Load app configuration
 app.configure(configuration());
@@ -34,6 +40,9 @@ app.use('/', express.static(app.get('public')));
 app.configure(express.rest());
 
 
+app.configure(mongoose);
+
+
 // Configure other middleware (see `middleware/index.js`)
 app.configure(middleware);
 // Set up our services (see `services/index.js`)
@@ -46,5 +55,7 @@ app.use(express.notFound());
 app.use(express.errorHandler({ logger }));
 
 app.hooks(appHooks);
+
+
 
 module.exports = app;
