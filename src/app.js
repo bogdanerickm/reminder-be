@@ -22,7 +22,6 @@ const emailCron = require('./crons');
 const app = express(feathers());
 
 
-emailCron.start();
 
 // Load app configuration
 app.configure(configuration());
@@ -55,6 +54,9 @@ app.use(express.notFound());
 app.use(express.errorHandler({ logger }));
 
 app.hooks(appHooks);
+
+// Starts a specific Cron Job
+emailCron(app);
 
 
 

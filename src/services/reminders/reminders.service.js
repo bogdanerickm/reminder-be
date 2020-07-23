@@ -11,12 +11,15 @@ module.exports = function (app) {
     Model,
     paginate
   };
-
+  
+  const test = () => {
+    return 3;
+  }
   // Initialize our service with any options it requires
   app.use('/reminders', createService(options));
 
   // Get our initialized service so that we can register hooks
   const service = app.service('reminders');
-
+  
   service.hooks(hooks);
 };

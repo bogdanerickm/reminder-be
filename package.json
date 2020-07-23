@@ -49,6 +49,7 @@
     "mongodb-core": "^3.2.7",
     "mongoose": "^5.3.12",
     "node-cron": "^2.0.3",
+    "nodemailer": "^6.4.10",
     "serve-favicon": "^2.5.0",
     "winston": "^3.0.0"
   },
