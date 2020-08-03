@@ -9,11 +9,11 @@ module.exports = function (app) {
     body: { type: String, required: true },
     emailTo: { type: String, required: true },
     name: { type: String, required: true },
+    notified: { type: Boolean, required: true, default: false },
     notifyByEmail: { type: Boolean, required: true },
     notifyByTelegram: { type: Boolean, required: true },
     phone: { type: Number, required: true },
-    selectedDate: { type: Date, required: true },
-    selectedTime: { type: Date, required: true },
+    selectedDateTime: { type: Date, required: true }
   }, {
     timestamps: true
   });

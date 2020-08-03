@@ -17,6 +17,7 @@ const appHooks = require('./app.hooks');
 const channels = require('./channels');
 
 const mongoose = require('./mongoose');
+
 const emailCron = require('./crons');
 
 const app = express(feathers());
@@ -54,6 +55,7 @@ app.use(express.notFound());
 app.use(express.errorHandler({ logger }));
 
 app.hooks(appHooks);
+
 
 // Starts a specific Cron Job
 emailCron(app);
