@@ -6,29 +6,5 @@
     "default": 10,
     "max": 50
   },
-  "mongodb": "mongodb://bogui:Gaiac00p@dds263307.mlab.com:63307/heroku_s914ln13",
-    "authentication": {
-      "secret": "d678d09332dd7f8cee5f3935c87abefdfd00187dc2db637ea3e1643408ff506345bcc1d01a214bcbce8d45ab574a1757c538beb7e198fb35eb038471724b34f842522c2ed18b5dabb96c70902188c189aa67fa2a2d58635e0732321e92760f4b141adab4a95858f69d2e4ca88c43dd5451ad2e8b709b3684f2eb8415c74e43c9c4990cd9035384a7fa20970fceb731ba01762b39d1354ca90a6a9e9d608d23bbd8a0e0290f11720f5bd60be72056b01c9667d9827a27796c5fdd6aa17d2d6e310d572e01a86d6d26a05e40b0da6c133ddc0fadf64abfac0a4d72cb2ef3ae168000655c278aeb34c4c282e98235ce6d51bc8d9f7e4d63598d2986c7205016ed83",
-      "strategies": [
-        "jwt",
-        "local"
-      ],
-      "path": "/authentication",
-      "service": "users",
-      "jwt": {
-        "header": {
-          "typ": "access"
-        },
-        "audience": "https://yourdomain.com",
-        "subject": "anonymous",
-        "issuer": "feathers",
-        "algorithm": "HS256",
-        "expiresIn": "1d"
-      },
-      "local": {
-        "entity": "user",
-        "usernameField": "email",
-        "passwordField": "password"
-      }
-    }
+  "mongodb": "mongodb://bogui:Gaiac00p@ds263307.mlab.com:63307/heroku_s914ln13"
 }
