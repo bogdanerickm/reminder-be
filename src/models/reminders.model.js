@@ -12,7 +12,7 @@ module.exports = function (app) {
     notified: { type: Boolean, required: true, default: false },
     notifyByEmail: { type: Boolean, required: true },
     notifyByTelegram: { type: Boolean, required: true },
-    phone: { type: Number, required: true },
+    subject: { type: String, required: true },
     selectedDateTime: { type: Date, required: true }
   }, {
     timestamps: true

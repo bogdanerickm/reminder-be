@@ -15,13 +15,14 @@ const sendMail = (reminder) => {
       pass: 'ingenieroviajero'
     }
   });
+  console.log('reminder', reminder);
   const mailOptions = {
     from: 'bogdan.utn@gmail.com',
-    to: 'bogdanerickm@gmail.com',
-    subject: 'Sending Email using Node.js',
-    text: 'That was easy!'
+    to: reminder.emailTo,
+    subject: reminder.subject,
+    text: reminder.body
   };
-  transporter.sendMail(mailOptions, function(error, info){
+  transporter.sendMail(mailOptions, function (error, info) {
     if (error) {
       console.log(error);
     } else {
@@ -29,8 +30,6 @@ const sendMail = (reminder) => {
     }
   });
 }
-
-// const url = 'https://api.telegram.org/bot1397248480:AAG9_GCHmRdLZ9Uw4bzsn0sp-V3V1yXUKeA/sendMessage?chat_id=311552137&parse_mode=Markdown&text=holaflor'
 
 const sendTelegramNotif = (url) => {
   return fetch(url, {
@@ -48,13 +47,12 @@ const getR = async (app) => {
       {
         query: {
           notified: false,
-          selectedDateTime: { $lte: moment() },
-      }
-  });
-  remi.data? remi.data.forEach(x => {
-    sendMail(x);
-    sendTelegramNotif(getUrl(x.body));
-    
+          selectedDateTime: { $lte: moment(), $gte: moment().subtract(2, 'minutes') },
+        }
+      });
+  remi.data ? remi.data.forEach(x => {
+    x.notifyByEmail? sendMail(x): '';
+    x.notifyByTelegram? sendTelegramNotif(getUrl(x.body)) : '';
     x.notified = true;
     app.service('reminders').update(x._id, x);
   }) : true;
@@ -62,11 +60,12 @@ const getR = async (app) => {
 }
 
 const getUrl = (textToSend) => {
-  return encodeURI(`https://api.telegram.org/bot${process.env.TELEGRAM_TOKEN}/sendMessage?chat_id=${process.env.CHAT_ID}&parse_mode=Markdown&text=${textToSend}`);
+  return encodeURI(`https://api.telegram.org/bot1397248480:AAG9_GCHmRdLZ9Uw4bzsn0sp-V3V1yXUKeA/sendMessage?chat_id=232550554&parse_mode=Markdown&text=${textToSend}`);
+  // return encodeURI(`https://api.telegram.org/bot${process.env.TELEGRAM_TOKEN}/sendMessage?chat_id=${process.env.CHAT_ID}&parse_mode=Markdown&text=${textToSend}`);
 }
 
 const emailCron = (app) => cron.schedule('* * * * * ', () => getR(app), {
-    scheduled: true
+  scheduled: true
 });
 
 module.exports = emailCron;
