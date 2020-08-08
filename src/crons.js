@@ -60,8 +60,8 @@ const getR = async (app) => {
 }
 
 const getUrl = (textToSend) => {
-  return encodeURI(`https://api.telegram.org/bot1397248480:AAG9_GCHmRdLZ9Uw4bzsn0sp-V3V1yXUKeA/sendMessage?chat_id=232550554&parse_mode=Markdown&text=${textToSend}`);
-  // return encodeURI(`https://api.telegram.org/bot${process.env.TELEGRAM_TOKEN}/sendMessage?chat_id=${process.env.CHAT_ID}&parse_mode=Markdown&text=${textToSend}`);
+  // return encodeURI(`https://api.telegram.org/bot1397248480:AAG9_GCHmRdLZ9Uw4bzsn0sp-V3V1yXUKeA/sendMessage?chat_id=232550554&parse_mode=Markdown&text=${textToSend}`);
+  return encodeURI(`https://api.telegram.org/bot${process.env.TELEGRAM_TOKEN}/sendMessage?chat_id=${process.env.CHAT_ID}&parse_mode=Markdown&text=${textToSend}`);
 }
 
 const emailCron = (app) => cron.schedule('* * * * * ', () => getR(app), {
