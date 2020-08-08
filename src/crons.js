@@ -11,8 +11,8 @@ const sendMail = (reminder) => {
   const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-      user: 'ernestodescompuesto@gmail.com',
-      pass: 'SCx0hoV!X*1=)IKx'
+      user: process.env.GMAIL_USERNAME,
+      pass: process.env.GMAIL_PASSWORD
     }
   });
   console.log('reminder', reminder);
